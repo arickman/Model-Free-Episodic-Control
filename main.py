@@ -10,17 +10,17 @@ from mfec.agent import MFECAgent
 from mfec.utils import Utils
 
 ENVIRONMENT = "Qbert-v0"  # More games at: https://gym.openai.com/envs/#atari
-#AGENT_PATH = "agents/Qbert-v0_1542210528/agent.pkl"
+#AGENT_PATH = "agents/Qbert-v0_1558646022/agent.pkl"
 AGENT_PATH = ""
 RENDER = False
 RENDER_SPEED = 0.04
 
-EPOCHS = 11
+EPOCHS = 5
 FRAMES_PER_EPOCH = 100000
 SEED = 42
 
 ACTION_BUFFER_SIZE = 1000000
-K = 11
+K = 11 # Number of nearest neighbors. Can tune.
 DISCOUNT = 1
 EPSILON = 0.005
 
@@ -31,6 +31,9 @@ SCALE_HEIGHT = 84
 SCALE_WIDTH = 84
 STATE_DIMENSION = 64
 
+# Tune this between [0, 1]. 0 = Frequency weighting, 1 = No frequency weighting
+# AGGRESSION = 1.0
+# UPDATE_TYPE = 'simple average'
 
 def main():
     random.seed(SEED)

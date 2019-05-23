@@ -8,6 +8,7 @@ from scipy.misc.pilutil import imresize
 
 from mfec.qec import QEC
 
+UPDATE_TYPE = 'simple average'
 
 class MFECAgent:
     def __init__(
@@ -80,6 +81,7 @@ class MFECAgent:
                 experience["action"],
                 value,
                 experience["time"],
+                update_type = UPDATE_TYPE,
             )
 
     def save(self, results_dir):

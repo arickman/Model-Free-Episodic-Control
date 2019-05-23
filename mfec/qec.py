@@ -3,6 +3,7 @@
 import numpy as np
 from sklearn.neighbors.kd_tree import KDTree
 
+from IPython.core.debugger import set_trace
 
 class QEC:
     def __init__(self, actions, buffer_size, k):
@@ -20,20 +21,25 @@ class QEC:
 
         value = 0.0
         neighbors = buffer.find_neighbors(state, self.k)
+
         for neighbor in neighbors:
             value += buffer.values[neighbor]
         return value / self.k
 
-    def update(self, state, action, value, time):
+    # Use this function to try different update policies
+    def update(self, state, action, value, time, update_type = 'default'):
         buffer = self.buffers[action]
         state_index = buffer.find_state(state)
         if state_index:
-            max_value = max(buffer.values[state_index], value)
-            max_time = max(buffer.times[state_index], time)
-            buffer.replace(state, max_value, max_time, state_index)
+            new_value = 0
+            if update_type == 'default':
+                new_value = max(buffer.values[state_index], value)
+            elif update_type == 'simple average':
+                new_value = 0.5 * (buffer.values[state_index] + value)
+            new_time = max(buffer.times[state_index], time) # What does this line do?
+            buffer.replace(state, new_value, max_time, state_index)
         else:
             buffer.add(state, value, time)
-
 
 class ActionBuffer:
     def __init__(self, capacity):
