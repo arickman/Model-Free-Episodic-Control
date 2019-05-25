@@ -8,7 +8,9 @@ from scipy.misc.pilutil import imresize
 
 from mfec.qec import QEC
 
-UPDATE_TYPE = 'simple average'
+#UPDATE_TYPE = 'default'
+#UPDATE_TYPE = 'simple average'
+UPDATE_TYPE = 'weighted average'
 
 class MFECAgent:
     def __init__(

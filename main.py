@@ -10,12 +10,13 @@ from mfec.agent import MFECAgent
 from mfec.utils import Utils
 
 ENVIRONMENT = "Qbert-v0"  # More games at: https://gym.openai.com/envs/#atari
-#AGENT_PATH = "agents/Qbert-v0_1558646022/agent.pkl"
+#ENVIRONMENT = 'SpaceInvaders-v0'
+#AGENT_PATH = "agents/Qbert-v0_1558661280/agent.pkl"
 AGENT_PATH = ""
 RENDER = False
 RENDER_SPEED = 0.04
 
-EPOCHS = 5
+EPOCHS = 20
 FRAMES_PER_EPOCH = 100000
 SEED = 42
 
@@ -40,7 +41,9 @@ def main():
 
     # Create agent-directory
     execution_time = str(round(time.time()))
-    agent_dir = os.path.join("agents", ENVIRONMENT + "_" + execution_time)
+    #agent_dir = os.path.join("agents", ENVIRONMENT + "_" + execution_time)
+    #agent_dir = os.path.join("agents_avg", ENVIRONMENT + "_" + execution_time)
+    agent_dir = os.path.join("agents_wavg", ENVIRONMENT + "_" + execution_time)
     os.makedirs(agent_dir)
 
     # Initialize utils, environment and agent

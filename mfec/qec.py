@@ -36,7 +36,9 @@ class QEC:
                 new_value = max(buffer.values[state_index], value)
             elif update_type == 'simple average':
                 new_value = 0.5 * (buffer.values[state_index] + value)
-            new_time = max(buffer.times[state_index], time) # What does this line do?
+            elif update_type == 'weighted average':
+                new_value = 0.166 * (5 * buffer.values[state_index] + value)
+            max_time = max(buffer.times[state_index], time) # What does this line do?
             buffer.replace(state, new_value, max_time, state_index)
         else:
             buffer.add(state, value, time)
