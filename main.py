@@ -32,18 +32,14 @@ SCALE_HEIGHT = 84
 SCALE_WIDTH = 84
 STATE_DIMENSION = 64
 
-# Tune this between [0, 1]. 0 = Frequency weighting, 1 = No frequency weighting
-# AGGRESSION = 1.0
-# UPDATE_TYPE = 'simple average'
-
 def main():
     random.seed(SEED)
 
     # Create agent-directory
     execution_time = str(round(time.time()))
-    #agent_dir = os.path.join("agents", ENVIRONMENT + "_" + execution_time)
+    agent_dir = os.path.join("agents", ENVIRONMENT + "_" + execution_time)
     #agent_dir = os.path.join("agents_avg", ENVIRONMENT + "_" + execution_time)
-    agent_dir = os.path.join("agents_wavg", ENVIRONMENT + "_" + execution_time)
+    #agent_dir = os.path.join("agents_wavg", ENVIRONMENT + "_" + execution_time)
     os.makedirs(agent_dir)
 
     # Initialize utils, environment and agent

@@ -5,6 +5,8 @@ from sklearn.neighbors.kd_tree import KDTree
 
 from IPython.core.debugger import set_trace
 
+WEIGHT = 5
+
 class QEC:
     def __init__(self, actions, buffer_size, k):
         self.buffers = tuple([ActionBuffer(buffer_size) for _ in actions])
@@ -37,7 +39,7 @@ class QEC:
             elif update_type == 'simple average':
                 new_value = 0.5 * (buffer.values[state_index] + value)
             elif update_type == 'weighted average':
-                new_value = 0.166 * (5 * buffer.values[state_index] + value)
+                new_value = float(1/(WEIGHT + 1)) * (WEIGHT * buffer.values[state_index] + value)
             max_time = max(buffer.times[state_index], time) # What does this line do?
             buffer.replace(state, new_value, max_time, state_index)
         else:
