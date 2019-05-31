@@ -8,7 +8,7 @@ from scipy.misc.pilutil import imresize
 
 from mfec.qec import QEC
 
-#UPDATE_TYPE = 'default'
+UPDATE_TYPE = 'default'
 #UPDATE_TYPE = 'simple average'
 #UPDATE_TYPE = 'weighted average'
 UPDATE_TYPE = 'time average'

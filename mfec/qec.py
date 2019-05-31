@@ -5,6 +5,8 @@ from sklearn.neighbors.kd_tree import KDTree
 
 from IPython.core.debugger import set_trace
 
+WEIGHT = 5
+
 class QEC:
     def __init__(self, actions, buffer_size, k):
         self.buffers = tuple([ActionBuffer(buffer_size) for _ in actions])
