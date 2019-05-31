@@ -1,0 +1,2 @@
+model_checkpoint_path: "/Users/josephmurphy/Documents/Stanford/CS 379C/final_project_001/Model-Free-Episodic-Control/experiments/Qbert-v0/checkpoints/model"
+all_model_checkpoint_paths: "/Users/josephmurphy/Documents/Stanford/CS 379C/final_project_001/Model-Free-Episodic-Control/experiments/Qbert-v0/checkpoints/model"

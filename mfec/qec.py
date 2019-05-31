@@ -38,6 +38,8 @@ class QEC:
                 new_value = 0.5 * (buffer.values[state_index] + value)
             elif update_type == 'weighted average':
                 new_value = 0.166 * (5 * buffer.values[state_index] + value)
+            elif update_type == 'time average':
+                new_value = np.mean(np.array(buffer.old_vals[state_index]))
             max_time = max(buffer.times[state_index], time) # What does this line do?
             buffer.replace(state, new_value, max_time, state_index)
         else:
@@ -49,7 +51,9 @@ class ActionBuffer:
         self.capacity = capacity
         self.states = []
         self.values = []
-        self.times = []
+        self.times  = []
+
+        self.old_vals = [[]]
 
     def find_state(self, state):
         if self._tree:
@@ -66,6 +70,8 @@ class ActionBuffer:
             self.states.append(state)
             self.values.append(value)
             self.times.append(time)
+
+            self.old_vals.append([value])
         else:
             min_time_idx = int(np.argmin(self.times))
             if time > self.times[min_time_idx]:
@@ -75,7 +81,9 @@ class ActionBuffer:
     def replace(self, state, value, time, index):
         self.states[index] = state
         self.values[index] = value
-        self.times[index] = time
+        self.times[index]  = time
+
+        self.old_vals[index].append(value)
 
     def __len__(self):
         return len(self.states)

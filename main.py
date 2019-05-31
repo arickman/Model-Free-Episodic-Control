@@ -16,7 +16,7 @@ AGENT_PATH = ""
 RENDER = False
 RENDER_SPEED = 0.04
 
-EPOCHS = 20
+EPOCHS = 3
 FRAMES_PER_EPOCH = 100000
 SEED = 42
 
@@ -43,7 +43,8 @@ def main():
     execution_time = str(round(time.time()))
     #agent_dir = os.path.join("agents", ENVIRONMENT + "_" + execution_time)
     #agent_dir = os.path.join("agents_avg", ENVIRONMENT + "_" + execution_time)
-    agent_dir = os.path.join("agents_wavg", ENVIRONMENT + "_" + execution_time)
+    #agent_dir = os.path.join("agents_wavg", ENVIRONMENT + "_" + execution_time)
+    agent_dir = os.path.join("agents_time_avg", ENVIRONMENT + "_" + execution_time)
     os.makedirs(agent_dir)
 
     # Initialize utils, environment and agent
