@@ -41,11 +41,12 @@ class QEC:
             elif update_type == 'weighted average':
                 new_value = 0.166 * (5 * buffer.values[state_index] + value)
             elif update_type == 'time average':
+                buffer.old_vals[state_index].append(value)
                 new_value = np.mean(np.array(buffer.old_vals[state_index]))
             max_time = max(buffer.times[state_index], time) # What does this line do?
             buffer.replace(state, new_value, max_time, state_index)
         else:
-            buffer.add(state, value, time)
+            buffer.add(state, value, time, update_type)
 
 class ActionBuffer:
     def __init__(self, capacity):
@@ -67,7 +68,7 @@ class ActionBuffer:
     def find_neighbors(self, state, k):
         return self._tree.query([state], k)[1][0] if self._tree else []
 
-    def add(self, state, value, time):
+    def add(self, state, value, time, update_type):
         if len(self) < self.capacity:
             self.states.append(state)
             self.values.append(value)
@@ -77,15 +78,18 @@ class ActionBuffer:
         else:
             min_time_idx = int(np.argmin(self.times))
             if time > self.times[min_time_idx]:
-                self.replace(state, value, time, min_time_idx)
+
+                if update_type == 'time average':
+                    max_var_idx = int(np.argmax(np.var(np.asarray(self.old_vals), axis=1)))
+                    self.replace(state, value, time, max_var_idx)
+                else:
+                    self.replace(state, value, time, min_time_idx)
         self._tree = KDTree(np.array(self.states))
 
     def replace(self, state, value, time, index):
         self.states[index] = state
         self.values[index] = value
         self.times[index]  = time
-
-        self.old_vals[index].append(value)
 
     def __len__(self):
         return len(self.states)
