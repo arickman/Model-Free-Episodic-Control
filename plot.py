@@ -1,9 +1,9 @@
 import numpy as np
 import csv
 import matplotlib.pyplot as plt 
-f_d_Q = open('agents/Qbert-v0_1558722343/results.csv')
-f_a_Q = open('agents_avg/Qbert-v0_1558722364/results.csv')
-f_w_Q = open('agents_wavg/Qbert-v0_1558722383/results.csv')
+f_d_Q = open('agents/Qbert-v0_1559088024/results.csv')
+f_a_Q = open('agents_avg/Qbert-v0_1559081161/results.csv')
+f_w_Q = open('agents_wavg/Qbert-v0_1559258801/results.csv')
 
 f_d_S = open('agents/SpaceInvaders-v0_1559335998/results.csv')
 f_a_S = open('agents_avg/SpaceInvaders-v0_1559338005/results.csv')
