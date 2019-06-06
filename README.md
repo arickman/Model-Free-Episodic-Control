@@ -1,8 +1,8 @@
-# Model-Free Episodic Control
+# Risk-Averse Reinforcement Learning with Long-term Memory based on Model-Free Episodic Control
 
 ## Description
 
-Implementation of the [Model-Free Episodic Control](http://arxiv.org/abs/1606.04460) algorithm (except the VAE part). This project is maintained by [astier](https://github.com/astier) and is a fork of the repository from [sudeepraja](https://github.com/sudeepraja/Model-Free-Episodic-Control), whereas his work is a fork of the original work from [ShibiHe](https://github.com/ShibiHe/Model-Free-Episodic-Control). All deviations from the paper which I am aware of are listed below.
+Modified implementation of the [Model-Free Episodic Control](http://arxiv.org/abs/1606.04460) algorithm (except the VAE part). This project is maintained by Alex Rickman (https://github.com/arickman) and is a forck from  [astier (https://github.com/astier) and is a fork of the repository from [sudeepraja](https://github.com/sudeepraja/Model-Free-Episodic-Control), whereas his work is a fork of the original work from [ShibiHe](https://github.com/ShibiHe/Model-Free-Episodic-Control). All deviations and modifications from the paper which I am aware of are listed below.
 
 ## Dependencies
 
@@ -11,7 +11,7 @@ This project is written in *Python 3* and uses *[OpenAI Gym](https://github.com/
 I would recommend creating a separate conda environment to install the dependencies. This can be done by first navigating to the directory where you would like to download this project and then executing the following steps:
 
 ```sh
-git clone https://github.com/astier/Model-Free-Episodic-Control
+git clone https://github.com/arickman/Model-Free-Episodic-Control
 cd Model-Free-Episodic-Control
 conda create -n mfec scikit-learn
 conda activate mfec
@@ -20,7 +20,7 @@ pip install gym[atari]
 
 ## Parameters
 
-Every important aspect and parameter of the program can be configured by a few variables which can be found on top of the file *main.py* and which are written in UPPERCASE. The default settings are those of the paper.
+Every important aspect and parameter of the program can be configured by a few variables which can be found on top of the file *main.py* and which are written in UPPERCASE. The default settings are those of the paper. We extended the parameters available in the standard Model Free Episodic Control allowing for the QEC table update type to be specified as either default, simple average, weighted average, or time average in the top of Main.py. If weighted average is selected, one can also select the weighting hyperparameter in the top of Main.py. 
 
 ## Put your first Agent on the Battlefield
 
@@ -53,3 +53,6 @@ All deviations from the paper which I am aware of are listed here.
 - The paper does not specify which KNN-Algorithm is used. This project implements KNN as a KDTree. The search-tree is rebuilt frequently.
 - When an action has to be chosen and multiple actions with the same maximum value exist then an action is chosen randomly from this set of actions. The paper does not describe what the algorithm does in such a case.
 - The paper does not describe what happens when an estimation via KNN has to be performed when the size of the respective action-buffer is smaller than *k*. This implementation returns in such a case *float(inf)*. This ensures that this action gets executed and the action-buffer gets filled with k elements as fast as possible.
+- The QEC table updates are optionally updated with averaging methods as opposed to the standard maximum value update. 
+
+For more information on these update methods and other subtleties, please see the project paper, added as a pdf to this repository, cs379C_final_project.pdf
