@@ -2,7 +2,7 @@
 
 ## Description
 
-Modified implementation of the [Model-Free Episodic Control](http://arxiv.org/abs/1606.04460) algorithm (except the VAE part). This project is maintained by Alex Rickman (https://github.com/arickman) and is a forck from  [astier (https://github.com/astier) and is a fork of the repository from [sudeepraja](https://github.com/sudeepraja/Model-Free-Episodic-Control), whereas his work is a fork of the original work from [ShibiHe](https://github.com/ShibiHe/Model-Free-Episodic-Control). All deviations and modifications from the paper which I am aware of are listed below.
+Modified implementation of the [Model-Free Episodic Control](http://arxiv.org/abs/1606.04460) algorithm (except the VAE part). This project is maintained by Alex Rickman (https://github.com/arickman) and Joseph Murphy (https://github.com/murphyjm) and is a forck from  [astier (https://github.com/astier) and is a fork of the repository from [sudeepraja](https://github.com/sudeepraja/Model-Free-Episodic-Control), whereas his work is a fork of the original work from [ShibiHe](https://github.com/ShibiHe/Model-Free-Episodic-Control). All deviations and modifications from the paper which I am aware of are listed below.
 
 ## Dependencies
 
